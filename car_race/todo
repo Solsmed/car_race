@@ -1,0 +1,5 @@
+todo:
+
+fix the crash when it swtiches from training to racing
+log reward and time steps to finishline for each trial
+average logs across ten simulations

@@ -1,0 +1,28 @@
+Introduction to SARSA (theoretical):
+- sarsa = state action reward state action
+- sarsa is algorithm for iteratively estimating the Q values (expected rewards) of (s,a) pairs by traversing through the state space multiple times
+- convergence of sarsa (when the Q values dont change any more for any successive iterations) results in the bellman equation (?)
+
+SARSA algorithm:
+- sarsa equation: dQ = n * (r - (Q - g.Q')) * e(s,a)
+1) first be in state in state s, choose action a according to e-greedy policy on Q(s,a)
+2) decay all eligibility traces
+3) update eligibility trace for e(s,a)
+4) perform action a, move to state s' and receive reward r
+5) choose next action a' while being in state s' by doing e-greedy policy on Q(s',a')
+6) update Q(s,a) according to sarsa equation
+7) select s <- s' and a <- a'
+8) calculate Q(s,a) again
+9) go to step 2) until convergence or end of trials
+
+Continuous state space:
+- since theere are no discrete states we cannot compute Q(s,a) in the conventional fashion (since it assumes states to be discrete)
+- instead we can have a neural implementation, in which the activity of the pre-synaptic neurons will encode the state space
+- The activity of the post synaptic neurons will estimate the Q value of the particular state coding for a particular action (so # of post-synaptic neurons = # of possible actions)
+- formula for presynaptic state space encoding
+- formula for estimating the Q(s,a) using neural implementation
+
+SARSA algorithm for continuous state space:
+- almost same as before
+- only difference that instead of the Q values being updated, now the synaptic weights (which calculate the Q values) will be updated only
+- important point to note is that when estimating Q(s,a) and Q'(s',a'), the weights of the system should not change for these 2 calculations in a single iteration
